@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(priority = 2, description = "Проверка входа в систему без логина", testName = "Негативный тест вход без логина")
     public void checkLoginWithoutUserName() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
                 "Сообщение не вадидно");
     }
 
-    @Test
+    @Test(priority = 1, description = "Проверка входа в систему без пароля", testName = "Негативный тест вход без пароля")
     public void checkLoginWithoutPassword() {
         loginPage.open();
         loginPage.login("standard_user", "");
@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
                 "Сообщение не вадидно");
     }
 
-    @Test
+    @Test(priority = 3, description = "Проверка входа в систему без логина и пароля", testName = "Негативный тест вход без логина и пароля")
     public void checkLoginWithoutEmptyValues() {
         loginPage.open();
         loginPage.login(" ", " ");
@@ -33,14 +33,14 @@ public class LoginTest extends BaseTest {
                 "Сообщение не вадидно");
     }
 
-    @Test
+    @Test(priority = 0, description = "Проверка входа в систему", testName = "Позитивный тест вход в систему", groups = {"smoke"})
     public void checkValidLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.getProductsPageOpened();
     }
 
-    @Test
+    @Test(priority = 4, description = "Проверка разлогин", testName = "Позитивный тест разлогин", groups = {"smoke"})
     public void checkLogout() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -48,4 +48,12 @@ public class LoginTest extends BaseTest {
         loginPage.checkCurrentUrlLoginPage();
     }
 
+    @Test(dataProvider = "LoginData", priority = 5, description = "Параметризация тестов LoginData", testName = "Параметризация тестов LoginData")
+    public void checkLoginWithNegativeValues(String user, String password, String expectedMessage) {
+        loginPage.open();
+        loginPage.login(user, password);
+        assertEquals(loginPage.getErrorMessage(),
+                expectedMessage,
+                "Сообщение не вадидно");
+    }
 }
