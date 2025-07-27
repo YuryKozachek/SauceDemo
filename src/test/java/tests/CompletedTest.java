@@ -8,7 +8,7 @@ public class CompletedTest extends BaseTest {
     public void checkNameProductInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstProductToCard();
+        productsPage.addFirstProductToCart();
         cartPage.getCheckout();
         checkoutPage.setInfoClient("Jon", "Smit", "55AA22");
         productInformationPage.getInformation();
