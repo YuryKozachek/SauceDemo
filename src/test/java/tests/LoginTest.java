@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -34,6 +35,15 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(priority = 0, description = "Проверка входа в систему", testName = "Позитивный тест вход в систему", groups = {"smoke"})
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Kozachek Y.N.")
+    @Link("https://www.saucedemo.com/")
+    @Epic("Login Page")
+    @Feature("Log In")
+    @Story("Login With Password")
+    @TmsLink("TT-123")
+    @Issue("II-123")
+    @Description("Валидный вход")
     public void checkValidLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

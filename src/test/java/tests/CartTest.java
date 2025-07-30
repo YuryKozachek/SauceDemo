@@ -8,7 +8,7 @@ public class CartTest extends BaseTest {
     public void checkNameProductInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstProductToCard();
+        productsPage.addFirstProductToCart();
         softAssert.assertEquals(productsPage.getNameFirstProduct(), cartPage.getNameProductInCart());
         softAssert.assertEquals(productsPage.getPriceFirstProduct(), cartPage.getPriceProductInCart());
     }
@@ -17,7 +17,7 @@ public class CartTest extends BaseTest {
     public void checkRemoveProductFromCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstProductToCard();
+        productsPage.addFirstProductToCart();
         softAssert.assertTrue(cartPage.checkProductCardInCart());
         cartPage.removeProductFromCart();
         softAssert.assertFalse(cartPage.checkProductCardOutCart());
