@@ -19,8 +19,8 @@ public class ProductsTest extends BaseTest {
     @Description("Проверьте количество товаров в корзине")
 
     public void checkQuantityProductsInCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         productsPage.addThreeProductToCart();
         assertEquals(productsPage.getQuantityProductsInCart(), "3");
     }
