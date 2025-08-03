@@ -53,12 +53,13 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
+        softAssert.assertAll();
+
         if (ITestResult.FAILURE == result.getStatus()) {
             takeScreenshot(driver);
         }
         if (driver != null) {
             driver.quit();
         }
-        softAssert.assertAll();
     }
 }
