@@ -27,8 +27,8 @@ public class BaseTest {
     ProductInformationPage productInformationPage;
     CompletedPage completedPage;
 
-    String user = System.getProperty("user");
-    String password = System.getProperty("password");
+    String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod
     public void setSetting() {
