@@ -39,6 +39,7 @@ public class BaseTest {
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-popup-blocking");
         chromeOptions.addArguments("--disable-infobars");
+        chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         actions = new Actions(driver);
@@ -55,7 +56,9 @@ public class BaseTest {
         if (ITestResult.FAILURE == result.getStatus()) {
             takeScreenshot(driver);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
         softAssert.assertAll();
     }
 }
