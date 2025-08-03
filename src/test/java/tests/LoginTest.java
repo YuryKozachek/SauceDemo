@@ -10,7 +10,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void checkLoginWithoutUserName() {
         loginPage.open();
-        loginPage.login("", "secret_sauce");
+        loginPage.login("", password);
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required",
                 "Сообщение не вадидно");
@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void checkLoginWithoutPassword() {
         loginPage.open();
-        loginPage.login("standard_user", "");
+        loginPage.login(user, "");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Password is required",
                 "Сообщение не вадидно");
@@ -46,14 +46,14 @@ public class LoginTest extends BaseTest {
     @Description("Валидный вход")
     public void checkValidLogin() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.getProductsPageOpened();
     }
 
     @Test
     public void checkLogout() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.getLogout();
         loginPage.checkCurrentUrlLoginPage();
     }

@@ -20,7 +20,7 @@ public class ProductsTest extends BaseTest {
 
     public void checkQuantityProductsInCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addThreeProductToCart();
         assertEquals(productsPage.getQuantityProductsInCart(), "3");
     }
